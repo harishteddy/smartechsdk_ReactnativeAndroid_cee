@@ -14,6 +14,7 @@ import {
 
 const Loginscreen = ({navigation}) =>  {
  const [email,setemail] = useState('');
+ const[password,setPassword]=useState('');
 console.log('userLogin success',email);
 const showbutton=()=>{
   ToastAndroid.show(
@@ -26,7 +27,7 @@ const showbutton=()=>{
 };
 
   return (
-    <View>
+    <View style={{flex:1}}>
       <View style={styles.container}>
                 <Image
                     style={styles.imageStyle}
@@ -36,28 +37,44 @@ const showbutton=()=>{
                     />
                     </View>
     <View style={styles.textstyle}>
-    <Text >  Hello Harish</Text>
+    <Text style={{fontSize:24,fontWeight:'600',color:'#FF7900'}} >  Login Here</Text>
       </View>                
     
    <View style={styles.SectionStyle}>
-
-    <TextInput style={styles.inputStyle}
-      placeholder="Email"
+    <TextInput 
+     style={styles.inputStyle}
+      placeholder="Enter Email"
       placeholderTextColor={'#8b9cb5'}
       keyboardType="email-address"
       onChangeText={inputemail=>{
       setemail(inputemail);
     }} />
+
+    <TextInput style={styles.inputStyle}
+    placeholder="Enter Password"
+    placeholderTextColor={'#8b9cb5'}
+    keyboardType="email-address"
+    onChangeText={inputPassword=>{
+    setPassword(inputPassword);
+  }} />
     </View>
-    <TouchableOpacity style={{height: 50, width: 150, borderRadius: 10,alignSelf:'center',backgroundColor:'#0000cc',marginTop:20 }}
+
+    <TouchableOpacity 
+    style={{height: 50, width: 150,
+       borderRadius: 10,alignSelf:'center',
+       backgroundColor:'#FF7900',marginTop:150 }}
     onPress={() =>{showbutton()}
 }
               >
 
     <Text style={styles.textstyle}>
-        Press Here
+        Login
        </Text>
     </TouchableOpacity>
+
+    <Text style={styles.textstyle1} onPress={()=>{showbutton()}}>
+        Create New Account?
+       </Text>
     </View>
   );
 };
@@ -85,18 +102,19 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },  inputStyle: {
-    flex: 1,
+   
     color: 'green',
     paddingLeft: 15,
     paddingRight: 15,
     borderWidth: 0.5,
     borderRadius: 30,
+    marginTop:20,
     width:'85%',
     height:50,
     borderColor: '#cc8800',
     },
   SectionStyle: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     height: 34,
     marginTop: 50,
     marginLeft: 35,
@@ -108,11 +126,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 50,
 },
-textstyle:{
-  color: 'pink',
+
+textstyle1:{
+  color: '#FF7900',
   justifyContent:'center',
   alignSelf:'center',
-   marginTop:10 ,
+  marginTop:10,
+  fontSize:20,
+  fontWeight:'800'
+},
+textstyle:{
+  color: '#FFF',
+  justifyContent:'center',
+  alignSelf:'center',
+  marginTop:10,
+  fontSize:20,
+  fontWeight:'800'
+  
   
 }
 });

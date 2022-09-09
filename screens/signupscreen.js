@@ -5,8 +5,13 @@ const Signupscreen = () => {
 
   const [email,setEmail] = useState('');
   const [Mobile,setMobile] = useState('');
+  const[password,setPassword]=useState('');
+  const[confirmPassword,setConfirmPassword]=useState('');
   console.log("email",email)
   console.log("email",Mobile)
+  console.log("email",password)
+  console.log("email",confirmPassword)
+  
   
   return (
     <View style={styles.SectionStyle}>
@@ -16,17 +21,16 @@ const Signupscreen = () => {
       </Text>
 
       <TextInput style={styles.inputStyle}
-      placeholder="Email"
+      placeholder="Enter Email"
       placeholderTextColor={'#8b9cb5'}
       keyboardType="email-address"
       onChangeText={inputemail=>{
       setEmail(inputemail);
     }}>
-
-      </TextInput>
+    </TextInput>
 
       <TextInput style={styles.inputStyle}
-      placeholder="Mobile"
+      placeholder="Enter Mobile Number"
       placeholderTextColor={'#8b9cb5'}
       keyboardType="number-pad"
       onChangeText={inputmobile=>{
@@ -35,20 +39,20 @@ const Signupscreen = () => {
 
       </TextInput>
       <TextInput style={styles.inputStyle}
-      placeholder="First Name"
+      placeholder="Enter Password"
       placeholderTextColor={'#8b9cb5'}
       keyboardType="numbers-and-punctuation"
-      onChangeText={inputmobile=>{
-      setMobile(inputmobile);
+      onChangeText={password=>{
+        setPassword(password);
     }}>
 
       </TextInput>
       <TextInput style={styles.inputStyle}
-      placeholder="Last Name"
+      placeholder="Enter Confirm Password"
       placeholderTextColor={'#8b9cb5'}
       keyboardType="numbers-and-punctuation"
-      onChangeText={inputfirstname=>{
-      setMobile(inputfirstname);
+      onChangeText={confirmPassword=>{
+        setConfirmPassword(confirmPassword);
     }}>
    </TextInput>
 
@@ -71,11 +75,13 @@ const Signupscreen = () => {
 const styles = StyleSheet.create({
  
   textStyle:{
-    marginTop:60,
+   
+    marginTop:40,
     height:50,
-    width:100,
+    width:200,
     alignSelf:'center',
-    color:'red'
+    color:'#FF7900',
+    fontSize:30
     
   },
 
@@ -88,11 +94,11 @@ const styles = StyleSheet.create({
     margin: 10,
     color: 'green',
   },buttonStyle: {
-    backgroundColor: '#0000cc',
-    borderWidth: 0,
+    backgroundColor: '#FF7900',
+    borderWidth: 0.5,
     color: '#FFFFFF',
     borderColor: '#7DE24E',
-    height: 40,
+    height: 50,
     width: 200,
     alignItems: 'center',
     alignSelf: 'center',
