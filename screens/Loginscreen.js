@@ -40,15 +40,16 @@ const showbutton=()=>{
       </View>                
     
    <View style={styles.SectionStyle}>
+
     <TextInput style={styles.inputStyle}
-    placeholder="Email
-    "placeholderTextColor={'#8b9cb5'}
-    keyboardType="email-address"
-    onChangeText={inputemail=>{
+      placeholder="Email"
+      placeholderTextColor={'#8b9cb5'}
+      keyboardType="email-address"
+      onChangeText={inputemail=>{
       setemail(inputemail);
     }} />
     </View>
-    <TouchableOpacity style={{height: 50, width: 150, borderRadius: 10, backgroundColor:'grey', alignSelf:'center' }}
+    <TouchableOpacity style={{height: 50, width: 150, borderRadius: 10,alignSelf:'center',backgroundColor:'#0000cc',marginTop:20 }}
     onPress={() =>{showbutton()}
 }
               >
@@ -88,9 +89,11 @@ const styles = StyleSheet.create({
     color: 'green',
     paddingLeft: 15,
     paddingRight: 15,
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderRadius: 30,
-    borderColor: '#dadae8',
+    width:'85%',
+    height:50,
+    borderColor: '#cc8800',
     },
   SectionStyle: {
     flexDirection: 'row',
@@ -99,16 +102,17 @@ const styles = StyleSheet.create({
     marginLeft: 35,
     marginRight: 35,
     margin: 10,
+    color: 'green',
   },
   container: {
     alignItems: 'center',
     marginTop: 50,
 },
 textstyle:{
-  
+  color: 'pink',
   justifyContent:'center',
   alignSelf:'center',
-  marginTop:10 ,
+   marginTop:10 ,
   
 }
 });
