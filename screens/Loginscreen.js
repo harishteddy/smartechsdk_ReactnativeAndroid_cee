@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useState } from 'react';
 
 import {
@@ -8,25 +9,52 @@ import {
   TouchableOpacity,
   View,
   ToastAndroid,
-  Image
+  Image,
+  ScrollView
 } from 'react-native';
 
 
 const Loginscreen = ({navigation}) =>  {
  const [email,setemail] = useState('');
  const[password,setPassword]=useState('');
-console.log('userLogin success',email);
+ const[badEmail,setBadEmail]=useState(false);
+ const[badPassword,setBadPassword]=useState(false);
+//console.log('userLogin success',email);
 const showbutton=()=>{
-  ToastAndroid.show(
-    '"User Identity Is Set successfully"',
-    ToastAndroid.LONG,
-    );
  navigation.navigate('signupscreen');
   //ToastAndroid.show(`"userLogin success",${email}`, ToastAndroid.LONG);
-  console.log('userLogin success',email);
+  //console.log('userLogin success',email);
 };
+const validate=()=>{
+  if (email==''){
+setBadEmail(true)
+}else{
+  setBadEmail(false)
+ }
+if(password==''){
+    setBadPassword(true)
+}else{
+  setBadPassword(false)
+}
+getData()
+}
+const getData=async()=>{
+  const mEmail=await AsyncStorage.getItem('EMAIL');
+  const mPass=await AsyncStorage.getItem('PASSWORD');
+  console.log('Test',mEmail,mPass);
+  if(mEmail===email&&mPass===password){
+    ToastAndroid.show(
+    '"User Log in successfully"',
+    ToastAndroid.LONG,
+    );
+    navigation.navigate('signupscreen');
+  }else{
+    alert('Login details wrong');
+  }}
 
   return (
+    <ScrollView style={{flex:1}}>
+
     <View style={{flex:1}}>
       <View style={styles.container}>
                 <Image
@@ -49,7 +77,10 @@ const showbutton=()=>{
       onChangeText={inputemail=>{
       setemail(inputemail);
     }} />
-
+{ badEmail===true &&(<Text 
+style={{marginTop:10,marginLeft:30,color:'red'}}>
+   Please Enter Email id</Text>)
+}
     <TextInput style={styles.inputStyle}
     placeholder="Enter Password"
     placeholderTextColor={'#8b9cb5'}
@@ -57,14 +88,20 @@ const showbutton=()=>{
     onChangeText={inputPassword=>{
     setPassword(inputPassword);
   }} />
+
+{ badPassword===true &&(<Text
+ style={{marginTop:10,marginLeft:30,color:'red'}}> 
+ Please Enter Password</Text>)
+}
+  
     </View>
 
     <TouchableOpacity 
     style={{height: 50, width: 150,
        borderRadius: 10,alignSelf:'center',
-       backgroundColor:'#FF7900',marginTop:150 }}
-    onPress={() =>{showbutton()}
-}
+       backgroundColor:'#FF7900',marginTop:160 }}
+    onPress={() =>{validate()}
+           }
               >
 
     <Text style={styles.textstyle}>
@@ -76,6 +113,7 @@ const showbutton=()=>{
         Create New Account?
        </Text>
     </View>
+    </ScrollView>
   );
 };
 
@@ -88,7 +126,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginLeft:35,
     color:'#dedrju1',
-  
   },
   imageStyle: {
     height: 150,
@@ -117,8 +154,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     height: 34,
     marginTop: 50,
-    marginLeft: 35,
-    marginRight: 35,
+    marginLeft: 20,
+    marginRight: 20,
     margin: 10,
     color: 'green',
   },
