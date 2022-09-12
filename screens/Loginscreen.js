@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import Smartech from 'smartech-reactnative-module';
 
 import {
   StyleSheet,
@@ -15,6 +16,35 @@ import {
 
 
 const Loginscreen = ({navigation}) =>  {
+
+  const [deeplinkresponse,setDeeplinkResponse] = useState('');
+  useEffect(() => {
+
+    console.log('UseEffect App Loaded........');
+   
+    const handleDeeplinkWithPayload = (deeplinkdata) => {
+    console.log('handleDeeplinkWithPayload ----- ', deeplinkdata);
+    };
+    Smartech.addListener(Smartech.SmartechDeeplinkNotification, handleDeeplinkWithPayload);
+    Smartech.getDeepLinkUrl(function (_response) {
+    console.log('getDeepLinkUrl Initial Deeplink Response ', _response);
+    setDeeplinkResponse(_response)
+    alert(_response)
+    if(deeplinkresponse==='https://www.google.com'){
+      showbutton()
+      alert('yes')
+    }else{
+      console.log('No Deeplink Response ')
+    }
+    
+    // Handling the SDK Deeplink Callback.
+    }); 
+    }, []);
+
+
+
+
+
  const [email,setemail] = useState('');
  const[password,setPassword]=useState('');
  const[badEmail,setBadEmail]=useState(false);
@@ -47,7 +77,7 @@ const getData=async()=>{
     '"User Log in successfully"',
     ToastAndroid.LONG,
     );
-    navigation.navigate('signupscreen');
+    navigation.navigate('homescreen');
   }else{
     alert('Login details wrong');
   }}
@@ -139,7 +169,6 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },  inputStyle: {
-   
     color: 'green',
     paddingLeft: 15,
     paddingRight: 15,

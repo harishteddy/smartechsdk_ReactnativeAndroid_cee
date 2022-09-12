@@ -10,6 +10,11 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.soloader.SoLoader;
 import com.harish_demo_one.newarchitecture.MainApplicationReactNativeHost;
+import com.netcore.android.Smartech;
+
+import java.lang.ref.WeakReference;
+
+import java.lang.ref.WeakReference;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
@@ -52,10 +57,27 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+      Smartech smartech = Smartech.getInstance(new WeakReference<>(this.getApplicationContext()));
+      smartech.initializeSdk(this);
+      smartech.setDebugLevel(9);
+      // Track app install and update
+      smartech.trackAppInstallUpdateBySmartech();
+      try {
+          smartech.fetchAlreadyGeneratedTokenFromFCM();
+      }
+      catch (Exception e) {
+
+      }
+
+
+
     // If you opted-in for the New Architecture, we enable the TurboModule system
     ReactFeatureFlags.useTurboModules = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+
+
+
   }
 
   /**
