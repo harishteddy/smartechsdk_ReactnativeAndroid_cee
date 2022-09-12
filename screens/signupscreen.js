@@ -72,10 +72,7 @@ const saveData=async()=>{
     }
     
  }
-
-    
-  
-  return (
+ return (
     <ScrollView style={{flex:1}}>
    
     <View style={{flex:1,marginTop:100}}>
