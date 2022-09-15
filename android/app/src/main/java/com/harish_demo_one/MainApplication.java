@@ -11,6 +11,7 @@ import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.soloader.SoLoader;
 import com.harish_demo_one.newarchitecture.MainApplicationReactNativeHost;
 import com.netcore.android.Smartech;
+import com.netcore.android.notification.SMTNotificationOptions;
 
 import java.lang.ref.WeakReference;
 
@@ -66,6 +67,16 @@ public class MainApplication extends Application implements ReactApplication {
           smartech.fetchAlreadyGeneratedTokenFromFCM();
       }
       catch (Exception e) {
+        SMTNotificationOptions options = new SMTNotificationOptions(this);
+        options.setBrandLogo(String.valueOf(R.mipmap.ic_launcher_round)); //e.g.logo is sample name for brand logo
+        options.setLargeIcon(String.valueOf(R.mipmap.ic_launcher_foreground));//e.g.ic_notification is sample name for large icon
+        options.setSmallIcon(String.valueOf(R.mipmap.ic_launcher_round)); //e.g.ic_action_play is sample name for icon
+        options.setSmallIconTransparent("ic_action_play"); //e.g.ic_action_play is sample name for transparent small icon
+        options.setTransparentIconBgColor("#FF0000");
+        options.setPlaceHolderIcon("ic_notification");//e.g.ic_notification is sample name for placeholder icon
+
+        Smartech.getInstance(new WeakReference<>(this)).setNotificationOptions(options);
+
 
       }
 

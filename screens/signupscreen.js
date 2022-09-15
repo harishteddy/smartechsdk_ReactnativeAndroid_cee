@@ -73,7 +73,7 @@ const saveData=async()=>{
     
  }
  return (
-    <ScrollView style={{flex:1}}>
+    <ScrollView style={{flex:1,marginLeft:30}}>
    
     <View style={{flex:1,marginTop:100}}>
        
@@ -163,6 +163,7 @@ const styles = StyleSheet.create({
     height:50,
     width:200,
     alignSelf:'center',
+    textAlign:'center',
     color:'#FF7900',
     fontSize:30 
   },
@@ -192,7 +193,7 @@ const styles = StyleSheet.create({
    inputStyle: {
     color: 'green',
     marginTop:30,
-    paddingLeft: 35,
+    paddingLeft: 30,
     paddingRight: 15,
     borderWidth: 0.5,
     borderRadius: 20,

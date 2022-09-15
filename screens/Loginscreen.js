@@ -11,34 +11,37 @@ import {
   View,
   ToastAndroid,
   Image,
-  ScrollView
+  ScrollView,
+  Linking
 } from 'react-native';
 
 
 const Loginscreen = ({navigation}) =>  {
 
-  const [deeplinkresponse,setDeeplinkResponse] = useState('');
-  useEffect(() => {
+  
+ useEffect(() => {
 
     console.log('UseEffect App Loaded........');
    
-    const handleDeeplinkWithPayload = (deeplinkdata) => {
-    console.log('handleDeeplinkWithPayload ----- ', deeplinkdata);
-    };
+  const handleDeeplinkWithPayload = (deeplinkdata) => {
+    console.log('handleDeeplinkWithPayload ----- ', deeplinkdata.deeplink);
+    const deeplinkResopnse = deeplinkdata.deeplink
+    if(deeplinkResopnse==='https://www.google.com'){
+      Linking.openURL(deeplinkResopnse)
+
+    }else{
+      navigation.navigate('signupscreen')
+    }
+     };
+   
     Smartech.addListener(Smartech.SmartechDeeplinkNotification, handleDeeplinkWithPayload);
     Smartech.getDeepLinkUrl(function (_response) {
-    console.log('getDeepLinkUrl Initial Deeplink Response ', _response);
-    setDeeplinkResponse(_response)
-    alert(_response)
-    if(deeplinkresponse==='https://www.google.com'){
-      showbutton()
-      alert('yes')
-    }else{
-      console.log('No Deeplink Response ')
-    }
-    
+     console.log('getDeepLinkUrl Initial Deeplink Response ', _response);
+     JSON.stringify(_response)
     // Handling the SDK Deeplink Callback.
-    }); 
+    });
+   
+   
     }, []);
 
 

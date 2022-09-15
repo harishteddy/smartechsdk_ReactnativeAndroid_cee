@@ -65,7 +65,7 @@ SmartechSDK.trackEvent("Harish", payloadata);
               textAlign: 'center',
               marginBottom: 16,
               color:'#FF7900',
-              fontWeight:"500%"
+              fontWeight:"500"
               
             }}>
             Smartech React Native SDk

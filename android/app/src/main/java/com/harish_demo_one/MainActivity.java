@@ -8,8 +8,6 @@ import com.facebook.react.ReactRootView;
 import com.netcore.reactnative.SmartechReactNativeModule;
 
 public class MainActivity extends ReactActivity {
-
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
